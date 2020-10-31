@@ -5,7 +5,7 @@ Management system that entails:
   - Upload of file to content(File upload)
   - Registration and login
   - Fully functional admin 
-  - Comment
+  - Comment added to the post
   - Files list 
   - etc
 
