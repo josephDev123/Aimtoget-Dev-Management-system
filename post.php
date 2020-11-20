@@ -66,6 +66,8 @@
 
                             <?php
 
+                            // post views sql
+
 $sql = "UPDATE post_table SET post_view = $post_views + 1 WHERE post_id = $post_id";
 $update_post_view_on_db= mysqli_query($conn, $sql);
                         }

@@ -11,11 +11,10 @@ function checkboxAll(){
     //     checkboxCont[i].checked;
     // }
 
-    // const checkedcheckbox = checkboxCont.checked;
-   
-    
+    // const checkedcheckbox = checkboxCont.checked;  
 
 }
+
 
 
 

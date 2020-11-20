@@ -3,7 +3,6 @@
 <?php
 	if (isset($_POST['submit_users'])) {
 		
-
 		$users_firstname= $_POST['users_firstname'];
 		$users_lastname = $_POST['users_lastname'];
 		$users_username = $_POST['users_username'];

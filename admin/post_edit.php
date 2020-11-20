@@ -43,7 +43,7 @@
 
 		$post_title = $_POST['post_title'];
 		$post_category_id = $_POST['post_category_id'];
-		$post_author = $_POST['post_author'];
+		$post_users = $_POST['post_users'];
 
 		$post_image = $_FILES['post_image']['name'];
 		$image_tmp = $_FILES['post_image']['tmp_name'];
@@ -56,7 +56,7 @@
 		$post_status = $_POST['post_status'];
 
 
-		$sql = "UPDATE post_table SET post_title ='$post_title', post_author ='$post_author', post_date = '$post_date', post_image ='$post_image', post_content = '$post_content', post_tag ='$post_tag', post_status = '$post_status', post_category_id = '$post_category_id', post_comment_count ='$post_comment' WHERE post_id = '$post_id' ";
+		$sql = "UPDATE post_table SET post_title ='$post_title', post_users ='$post_users', post_date = '$post_date', post_image ='$post_image', post_content = '$post_content', post_tag ='$post_tag', post_status = '$post_status', post_category_id = '$post_category_id', post_comment_count ='$post_comment' WHERE post_id = '$post_id' ";
 
 		$update_sql_check = mysqli_query($conn, $sql);
 
@@ -91,7 +91,8 @@ if (isset($_GET['p_id'])) {
 
 			$post_id = $row['post_id'];
 			$post_title = $row['post_title'];
-			$post_author = $row['post_author'];
+			// $post_author = $row['post_author'];
+			$post_users = $row['post_users'];
 			$post_date = $row['post_date'];
 			$post_image = $row['post_image'];
 			$post_content = $row['post_content'];
@@ -137,8 +138,8 @@ if (isset($_GET['p_id'])) {
   </div>
 
 	<div class="form-group">
-		<label for="post_author">Post Author</label>
-		<input type="text" class="form-control" name="post_author" value='<?php echo $post_author; ?>'>
+		<label for="post_author">Post Users</label>
+		<input type="text" class="form-control" name="post_users" value='<?php echo $post_users; ?>'>
 	</div>
 
 	<div class="form-group">

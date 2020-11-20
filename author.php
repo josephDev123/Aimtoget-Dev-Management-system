@@ -33,13 +33,14 @@
                 $post_id = $_GET['post_id'];
                 $post_author_post = $_GET['author'];
            
-                  $sql = "SELECT * FROM post_table WHERE post_author = '$post_author_post'";
+                  $sql = "SELECT * FROM post_table WHERE post_users = '$post_author_post'";
                   $result = mysqli_query($conn, $sql);
                   if ($result) {
                     while($row = mysqli_fetch_assoc($result)){
                         $post_id = $row['post_id'];
                         $post_title = $row['post_title'];
-                        $post_author = $row['post_author'];
+                        // $post_author = $row['post_author'];
+                        $post_user = $row['post_users'];
                         $post_date = $row['post_date'];
                         $post_image = $row['post_image'];
                         $post_content = $row['post_content'];
@@ -51,7 +52,7 @@
                 <a href="post.php?post_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
             </h2>
             <p class="lead">
-               Post by <?php echo $post_author; ?>
+               Post by <?php echo  $post_user ; ?>
             </p>
             <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
             <hr>
@@ -65,8 +66,8 @@
 
                         <?php
 
-// $sql = "UPDATE post_table SET post_view = $post_post_view + 1 WHERE post_id = $post_id";
-// $update_post_view_on_db= mysqli_query($conn, $sql);
+$sql = "UPDATE post_table SET post_view = $post_post_view + 1 WHERE post_id = $post_id";
+$update_post_view_on_db= mysqli_query($conn, $sql);
                     }
                   }
                  }
