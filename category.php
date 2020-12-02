@@ -35,11 +35,17 @@
                 	$cart_id = $_GET['cart_id'];
 
                 }
-
+                
+                // if (isset($_SESSION['users_role']) && $_SESSION['users_role'] == 'admin') {
+                //     $sql = "SELECT * FROM post_table WHERE post_id = $post_id";
+                // }else{
+                //     $sql = "SELECT * FROM post_table WHERE post_category_id = $cart_id AND post_status = 'publish'";
+                // }
                
-                	  $sql = "SELECT * FROM post_table WHERE post_category_id = $cart_id AND post_status = 'publish'";
-                	  $result = mysqli_query($conn, $sql);
-                	  if ($result) {
+                     $sql = "SELECT * FROM post_table WHERE post_category_id = $cart_id AND post_status = 'publish'";
+                      $result = mysqli_query($conn, $sql);
+                      $nums_of_rows = mysqli_num_rows($result);
+                	  if ($nums_of_rows > 0) {
                 	  	while($row = mysqli_fetch_assoc($result)){
                             $post_id = $row['post_id'];
                 	  		$post_title = $row['post_title'];
@@ -70,7 +76,9 @@
 
                 	  		<?php
                 	  	}
-                	  }
+                	  }else{
+                          echo '<h1 class="text-center">NO CATEGORY POST</h1>';
+                      }
 
                 ?>
 

@@ -8,9 +8,9 @@
 
         <?php
 
-        //deleting comment from database
-            if (isset($_GET['delete'])) {
-             $comment_id = $_GET['delete'];
+        //deleting comment from comment table database
+            if (isset($_POST['delete_comment_btn'])) {
+             $comment_id = $_POST['delete'];
 
              $sql = "DELETE FROM comments_table WHERE comment_id = $comment_id";
              $delete_comment_table = mysqli_query($conn, $sql);
@@ -66,7 +66,7 @@
                             <th>comment_status</th>
                             <th>comment_date</th>
                             <th>comment_content</th>
-                            <th>In_reponse_to</th>
+                            <!-- <th>In_reponse_to</th> -->
                             <th>Approve</th>
                             <th>Unapprove</th>
                             <th>Delete</th>
@@ -127,9 +127,16 @@
                             ?>
                             
 
-                            <td><a href="comments.php?approve=<?php echo $comment_id ?>">Approve</a></td>
-                            <td><a href="comments.php?unapprove=<?php echo $comment_id ?>">Unapprove</a></td>
-                            <td><a href="comments.php?delete=<?php echo $comment_id ?>">Delete</a></td>
+                            <td><a href="comments.php?approve=<?php echo $comment_id ?>"class="btn btn-success" onClick="javascript: return confirm('Do you want to Approve comment')" >Approve</a></td>
+
+                            <td><a href="comments.php?unapprove=<?php echo $comment_id ?>" class="btn btn-warning" onClick="javascript: return confirm('Do you want to Unapprove comment')">Unapprove</a></td>
+
+                            <form method="POST" action="">
+                                <input type="hidden" name="delete" value="<?php echo $comment_id ?>">
+                                <td><button type="submit" name="delete_comment_btn" class="btn btn-danger" onClick="javascript: return confirm('Please confirm deletion')" >Delete</button></td>
+
+                            </form>
+                            <!-- <td><a href="comments.php?delete=<?php echo $comment_id ?>">Delete</a></td> -->
 
                         </tr>
 

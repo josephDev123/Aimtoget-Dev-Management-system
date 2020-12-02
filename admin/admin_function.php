@@ -57,8 +57,8 @@ function delete_categories(){
 
 	//deleting categories query
 global $conn;
-  if (isset($_GET['delete'])) {
-         $delete_value = $_GET['delete'];
+  if (isset($_POST['cartegory_delete_btn'])) {
+         $delete_value = $_POST['cartegory_delete'];
          $sql = "DELETE  FROM cart_table WHERE id = '$delete_value'";
          $result_delete = mysqli_query($conn, $sql);
      if (!$result_delete) {

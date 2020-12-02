@@ -119,6 +119,8 @@
                                <tr>
                                    <th>Cart_id</th>
                                     <th>Categories Title</th>
+                                    <th>Delete</th>
+                                    <th>Edit</th>
                                </tr>
                            </thead>
 
@@ -135,8 +137,17 @@
                                
                                    <td><?php echo $row['id']; ?></td>
                                     <td><?php echo $row['cart_title']; ?></td>
-                                    <td><a href="admin_categories.php?delete=<?php echo $row['id']; ?>">Delete</a></td>
-                                    <td><a href="admin_categories.php?edit=<?php echo $row['id']; ?>">Edit</a></td>
+
+                                    <form method="POST" action=''>
+                                        <input type="hidden" name="cartegory_delete" value="<?php echo $row['id']; ?>">
+                                        <td><button type="submit" name="cartegory_delete_btn" class="btn btn-danger" onClick="javascript: return confirm('Please confirm deletion')">Delete</button></td>
+
+                                    </form>
+
+
+
+                                    <!-- <td><a href="admin_categories.php?delete=<?php echo $row['id']; ?>">Delete</a></td> -->
+                                    <td><a href="admin_categories.php?edit=<?php echo $row['id']; ?>" class="btn btn-success" >Edit</a></td>
 
                                     <?php
                                 }

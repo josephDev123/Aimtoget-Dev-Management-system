@@ -32,24 +32,13 @@
                 <!-- /.row -->
 
 				<?php
-				$sql = "SELECT * FROM post_table WHERE post_status ='Publish'";
-				$check_query_against_database = mysqli_query($conn, $sql);
-				if ($check_query_against_database) {
-					$num_of_row_in_post = mysqli_num_rows($check_query_against_database);
-				}
-
-
+				//number of publish post
+				$row_num_of__post = selectAllPublishPost('post_table',  'post_status');
 				?>   
 
 				
 				<?php
-				$sql = "SELECT * FROM post_table WHERE post_status ='Draft'";
-				$check_query_against_database = mysqli_query($conn, $sql);
-				if ($check_query_against_database) {
-					$num_of_draft_post = mysqli_num_rows($check_query_against_database);
-				}
-
-
+				$num_of_draft_post = selectAlldraftPost('post_table', 'post_status');
 				?>         
 					<div class="row">
 					    <div class="col-lg-3 col-md-6">
@@ -60,7 +49,7 @@
 					                        <i class="fa fa-file-text fa-5x"></i>
 					                    </div>
 					                    <div class="col-xs-9 text-right">
-					                  <div class='huge'><?php  echo $num_of_row_in_post; ?></div>
+					                  <div class='huge'><?php  echo $row_num_of__post; ?></div>
 					                        <div>Posts</div>
 					                    </div>
 					                </div>
@@ -76,13 +65,8 @@
 					    </div>
 
 			 <?php
-					$sql = "SELECT * FROM comments_table";
-					$check_query_against_database = mysqli_query($conn, $sql);
-					if ($check_query_against_database) {
-						$num_of_row_in_comment = mysqli_num_rows($check_query_against_database);
-					}
-
-
+			 //comment count from comment table
+					$num_of_row_in_comment = numOfComment('comments_table');
 				?>
 					    <div class="col-lg-3 col-md-6">
 					        <div class="panel panel-green">
@@ -109,13 +93,7 @@
 
 
 			 <?php
-					$sql = "SELECT * FROM users_table";
-					$check_query_against_database = mysqli_query($conn, $sql);
-					if ($check_query_against_database) {
-						$num_of_row_in_userstable = mysqli_num_rows($check_query_against_database);
-					}
-
-
+					$num_of_row_in_userstable = numOfUser('users_table');
 				?>
 
 
@@ -145,13 +123,7 @@
 
 
 					    <?php
-					$sql = "SELECT * FROM cart_table";
-					$check_query_against_database = mysqli_query($conn, $sql);
-					if ($check_query_against_database) {
-						$num_of_row_in_category = mysqli_num_rows($check_query_against_database);
-					}
-
-
+					$num_of_row_in_category = numOfRowCategory('cart_table');
 				?>
 					    <div class="col-lg-3 col-md-6">
 					        <div class="panel panel-red">
@@ -193,7 +165,7 @@
 				     <?php
 
 				        $element =['Active post', 'Draft post', 'Number of Comment', 'Number of users', 'Number of Categories'];
-				        $element_values =[$num_of_row_in_post, $num_of_draft_post, $num_of_row_in_comment, $num_of_row_in_userstable, $num_of_row_in_category];
+				        $element_values =[$row_num_of__post, $num_of_draft_post, $num_of_row_in_comment, $num_of_row_in_userstable, $num_of_row_in_category];
 				        for ($i = 0; $i<count($element); $i++) {
 				        	$element[$i]; 
 

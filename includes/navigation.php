@@ -2,13 +2,13 @@
 <?php 
 
 
-  $_SESSION['username'] = null;
-    $_SESSION['users_password'] =null;
-    $_SESSION['users_firstname'] = null;
-    $_SESSION['users_lastname'] = null;
-    $_SESSION['users_role'] = null;
+//   $_SESSION['username'] = null;
+//     $_SESSION['users_password'] =null;
+//     $_SESSION['users_firstname'] = null;
+//     $_SESSION['users_lastname'] = null;
+//     $_SESSION['users_role'] = null;
 
-?>
+// ?>
 
 
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -24,6 +24,9 @@
                 <a class="navbar-brand" href="index.php">CMS</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
+
+           
+
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                    <?php 
@@ -34,7 +37,32 @@
                           $cart_id = $row['id'];
                            $cart_title = $row['cart_title'];
                            ?>
-                           <li>
+
+
+                        <?php
+                        // adding active class to link for activeness
+                                        
+                                        $Link = basename($_SERVER['PHP_SELF']);
+                                        $registration = 'registration.php';
+                                        $contact_link = 'contact.php';
+            
+                                        $contact_class = '';
+                                        $active_class = '';
+                                        $registration_class = '';
+            
+            
+                                        if(isset($_GET['cart_id']) &&  $_GET['cart_id'] == $cart_id) {
+                                            $active_class = 'active';
+                                        }else if ($Link == $registration) {
+                                            $registration_class = 'active';
+                                        }else if ($Link == $contact_link) {
+                                            $contact_class = 'active';
+                                        }
+            
+                                        ?>
+            
+
+                           <li class="<?php echo $active_class ?>" >
                                 <a href="category.php?cart_id=<?php echo $cart_id; ?>"><?php echo $cart_title; ?></a>
                             </li>
 
@@ -42,12 +70,14 @@
                        }
                        ?>
 
-                            <!-- <li>
-                                <a href="admin">Admin</a>
-                            </li> -->
 
-                            <li>
+                            <li class='<?php echo $registration_class ?>'>
                                 <a href="registration.php">Registration</a>
+                            </li>
+
+                            
+                            <li class='<?php echo $contact_class ?>'>
+                                <a href="contact.php">Contact.php</a>
                             </li>
 
                             <?php 

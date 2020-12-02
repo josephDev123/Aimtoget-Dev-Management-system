@@ -1,11 +1,9 @@
-
-
+<?php ob_start();  ?>
+<?php session_start();  ?>
 <?php include '../includes/dB.php'; ?>
-
+<?php include 'functions.php'; ?>
 
 <?php 
- ob_start();
-session_start(); 
 
 if ((!$_SESSION['username'] )) {
    header('Location: ../index.php');

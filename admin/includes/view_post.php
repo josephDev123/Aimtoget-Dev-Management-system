@@ -1,5 +1,17 @@
 
                 <?php
+
+                //delete post
+                if (isset($_POST['delete_post_btn'])) {
+                    $post_id = $_POST['delete_post'];
+
+                    $sql = "DELETE  FROM post_table WHERE post_id = '$post_id'";
+                    $post_delete_check = mysqli_query($conn, $sql);
+                    header('Location: post.php');
+                    
+                }
+
+
                     if(isset($_POST['apply_post_status'])){
                         
                         if(isset($_POST['checkbox'])){
@@ -10,20 +22,6 @@
                             $confirm_sql_on_db = mysqli_query($conn, $sql);
 
                         }
-
-                        // OR
-                        // if(isset($_POST['checkbox'])){
-                        //     $post_id = $_POST['checkbox'];
-                        //     $change_post_status = $_POST['select_post_status'];
-                        //     switch($change_post_status) {
-                        //        case 'Publish':
-                        //         $sql = "UPDATE post_table SET post_status = 'Publish' WHERE post_id =  '$post_id'";
-                        //         $confirm_sql_on_db = mysqli_query($conn, $sql);
-                        //            break;
-                        //     }
-
-                        // }
-                      
                     }
 
                 ?>
@@ -78,7 +76,7 @@
                             <th>post_status</th>
                             <th>post_image</th>
                             <th>post_tag</th>
-                            <th>p_comment_count</th>
+                            <th>p_comm_count</th>
                             <th>Publish post</th>
                             <th>Draft post</th>
                             <th>Date</th>
@@ -100,7 +98,7 @@
 
                             if ($check_result > 0) {
                                while($row=mysqli_fetch_assoc($result_select_all_post)){
-
+                             
                                 $post_id = $row['post_id'];
                                 // $post_author = $row['post_author'];
                                 $post_users = $row['post_users'];
@@ -154,13 +152,26 @@
                             ?>
                          
                             <td><?php echo $num_of_post_comment; ?></td>
-                            <td><a href="post.php?publish=<?php echo $post_id ?>">Publish post</a></td>
-                            <td><a href="post.php?draft=<?php echo $post_id ?>">Draft post</a></td>
+
+                            <td><a href="post.php?publish=<?php echo $post_id ?>" class="btn btn-success" onClick="javascript: return confirm('Do you want to change post to publish')">Publish post</a></td>
+
+                            <td><a href="post.php?draft=<?php echo $post_id ?>" class="btn btn-primary" onClick="javascript: return confirm('Do you want to change post to draft')">Draft post</a></td>
+
                             <td><?php echo $post_date; ?></td>
-                            <td><a href="../post.php?post_id=<?php echo $post_id ?>">post</a></td>
-                            <td><a href="post_edit.php?p_id=<?php echo $post_id ?>">Edit</a></td>
-                            <td><a href="post.php?source=delete_post&delete=<?php echo $post_id ?>">Delete</a></td>
-                            <td><?php echo $post_views; ?></td>
+
+                            <td><a href="../post.php?post_id=<?php echo $post_id ?>" class="btn btn-info" onClick="javascript: return confirm('Do you want to view the post')">post</a></td>
+
+                            <td><a href="post_edit.php?p_id=<?php echo $post_id ?>" class="btn btn-warning" onClick="javascript: return confirm('Do you want to edit')">Edit</a></td>
+
+
+                           <form method="POST" action="">
+                                <input type="hidden" name="delete_post" value="<?php echo $post_id; ?>">
+                                
+                                <td><button type="submit" class="btn btn-danger" name="delete_post_btn" onClick="javascript: return confirm('Please confirm deletion')">Delete</button></td>   
+                            </form>
+
+
+                            <td class="btn btn-primary"><?php echo $post_views; ?></td>
 
                         </tr>
 
@@ -172,8 +183,7 @@
 
                             ?>
 
-                        
-
+                    
 
                     </tbody>
                   

@@ -1,4 +1,13 @@
+<?php
 
+// the two code are correct. You can either of the two below
+
+// if($_SESSION['users_role'] !=='admin'){
+//    header('Location: ../admin');
+// }
+
+if(isAdmin($_SESSION['username']));
+?>
 
 
 
@@ -8,9 +17,9 @@
 
         <?php
 
-        //deleting comment from database
-            if (isset($_GET['delete'])) {
-             $users_id = $_GET['delete'];
+        //deleting users from users table database
+            if (isset($_POST['delete_users_btn'])) {
+             $users_id = $_POST['delete'];
 
              $sql = "DELETE FROM users_table WHERE users_id = $users_id";
              $delete_users_tableP_query = mysqli_query($conn, $sql);
@@ -142,10 +151,16 @@
 
                             ?>
                             
-                             <td><a href="users.php?change_to_admin=<?php echo $users_id ?>">Change to admin role</a></td>
-                            <td><a href="users.php?change_to_subscriber=<?php echo $users_id ?>">Change to subscriber role</a></td>
-                            <td><a href="users.php?source=edit_users&edit=<?php echo $users_id ?>">edit</a></td>
-                            <td><a href="users.php?delete=<?php echo  $users_id ?>">Delete</a></td>
+                             <td><a href="users.php?change_to_admin=<?php echo $users_id ?>" class="btn btn-success" onClick="javascript: return confirm('Do you want to change the role to Admin')" >admin</a></td>
+                            <td><a href="users.php?change_to_subscriber=<?php echo $users_id ?>"class="btn btn-warning" onClick="javascript: return confirm('Do you want to change the role to Subscriber')" >subscriber</a></td>
+                            <td><a href="users.php?source=edit_users&edit=<?php echo $users_id ?>" class="btn btn-info" onClick="javascript: return confirm('Do you want to edit')" > edit</a></td>
+
+
+                            <form method="POST" action="">
+                              <input type="hidden" name="delete" value="<?php echo  $users_id ?>">
+                              <td><button type="submit" name="delete_users_btn" onClick="javascript: return confirm('Do you want to delete')" class="btn btn-danger">Delete</button></td> 
+                            </form>
+                            <!-- <td><a href="users.php?delete=<?php echo  $users_id ?>">Delete</a></td> -->
 
                         </tr>
 

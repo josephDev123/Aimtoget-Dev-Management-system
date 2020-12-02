@@ -39,9 +39,9 @@
 
 
                 switch ($source) {
-                    case 'delete_post':
-                      include 'includes/post_delete.php';
-                        break;
+                    // case 'delete_post':
+                    //   include 'includes/post_delete.php';
+                    //     break;
                     
                     case 200:
                        echo "Hello programming";

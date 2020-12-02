@@ -32,9 +32,13 @@
                  if (isset($_GET['post_id'])) {
                     $post_id = $_GET['post_id'];
 
-
+                    // if (isset($_SESSION['users_role']) && $_SESSION['users_role'] == 'admin') {
+                    //     $sql = "SELECT * FROM post_table WHERE post_id = $post_id";
+                    // }else{
+                    //     $sql = "SELECT * FROM post_table WHERE post_id = $post_id AND post_status = 'publish'";
+                    // }
                
-                      $sql = "SELECT * FROM post_table WHERE post_id = $post_id AND post_status = 'publish'";
+                    $sql = "SELECT * FROM post_table WHERE post_id = $post_id AND post_status = 'publish'";
                       $result = mysqli_query($conn, $sql);
                       if ($result) {
                         while($row = mysqli_fetch_assoc($result)){

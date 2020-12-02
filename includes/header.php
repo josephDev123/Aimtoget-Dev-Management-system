@@ -1,5 +1,5 @@
 
-
+<?php ob_start();?>
 <?php include 'includes/dB.php'; ?>
 
 

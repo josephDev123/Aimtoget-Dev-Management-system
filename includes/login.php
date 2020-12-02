@@ -18,7 +18,7 @@ if ($num_of_rows > 0) {
 		$db_users_password = $row['users_password'];
 		$db_users_firstname = $row['users_firstname'];
 		$db_users_lastname = $row['users_lastname'];
-		$db_users_role = $row['users_role'];
+		$db_users_role     = $row['users_role'];
 
 
 			if ($user_username == $db_users_username && $user_password == $db_users_password) {

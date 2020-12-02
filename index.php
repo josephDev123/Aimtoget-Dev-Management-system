@@ -45,11 +45,17 @@
                     }else{
                         $page_1 = ($page * 2) - 2;
                     }
-                    
-               
-                	  $sql = "SELECT * FROM post_table WHERE post_status = 'publish' LIMIT $page_1, 3";
-                	  $result = mysqli_query($conn, $sql);
-                	  if ($result) {
+
+                    // if (isset($_SESSION['users_role']) && $_SESSION['users_role'] == 'admin') {
+                    //     $sql = "SELECT * FROM post_table";
+                    // }else{
+                    //     $sql = "SELECT * FROM post_table WHERE post_status = 'publish' LIMIT $page_1, 3";
+                    // }
+                        
+                    $sql = "SELECT * FROM post_table WHERE post_status = 'publish' LIMIT $page_1, 3";
+                      $result = mysqli_query($conn, $sql);
+                      $num =mysqli_num_rows($result);
+                	  if ($num > 0) {
                 	  	while($row = mysqli_fetch_assoc($result)){
                             $post_id = $row['post_id'];
                 	  		$post_title = $row['post_title'];
@@ -82,7 +88,9 @@
 
                 	  		<?php
                 	  	}
-                	  }
+                	  }else{
+                          echo '<h1 class="text-center">NO POST<h1>';
+                      }
 
                 ?>
 
