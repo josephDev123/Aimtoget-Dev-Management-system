@@ -69,11 +69,50 @@ function isAdmin($username){
     if($admin =='admin'){
         return true;
     }else{
-        return header('Location: ../admin');
+        // return header('Location: ../admin');correct
+        return false;
     }
 
 }
 
+//login section
+function userLogin($username, $password){
+    global $conn;
+    
+$sql = "SELECT * FROM users_table WHERE users_username = '$username' && users_password = '$password'";
+$select_users_table_query = mysqli_query($conn, $sql);
+$num_of_rows = mysqli_num_rows($select_users_table_query);
+if ($num_of_rows > 0) {
+	while($row = mysqli_fetch_assoc($select_users_table_query)){
+		$db_users_username = $row['users_username'];
+		$db_users_password = $row['users_password'];
+		$db_users_firstname = $row['users_firstname'];
+		$db_users_lastname = $row['users_lastname'];
+		$db_users_role     = $row['users_role'];
+		echo $db_users_password;
+	if ($username == $db_users_username && $password == $db_users_password) {
+		// if ($user_username == $db_users_username && password_verify($user_password, $db_users_password)) {
+
+			$_SESSION['username'] = $username;
+			$_SESSION['users_password'] = $password;
+			$_SESSION['users_firstname'] = $db_users_firstname;
+			$_SESSION['users_lastname'] = $db_users_lastname;
+			$_SESSION['users_role'] = $db_users_role;
+			
+            // header('Location: ../admin');
+            return true;
+	
+        }else{
+            // header('Location: ../index.php');
+            return false;
+		}
+	}	
+
+	
+}
+// return false;
+
+}
 
 
 

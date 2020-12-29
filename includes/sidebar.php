@@ -24,25 +24,40 @@
 
                  <!-- login form -->
                 <div class="well">
-                    <h4>Login</h4>
-                    <form action="includes/login.php" method="post" >
-                    	<div class="form-group">
-                    		<label for="username">Username</label>
-                            <input type="text" class="form-control" name="username">
+
+                    <?php
+                        if(isset($_SESSION['username'])){
+                            echo 'logged-in as ' .strtoupper($_SESSION['username']) . ' <a href="includes/logout.php" class="btn btn-primary">Log-out</a>';
+                        }else{
+                            ?>
+                            <h4>Login</h4>
+                            <form action="includes/login.php" method="post" >
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" name="username">
+                                </div>
+        
+                                <div class="form-group">
+                                    <label for="user_password">Password</label>
+                                    <input type="Password" class="form-control" name="user_password">
+                                </div>
+
+                                <div class="form-group">
+                                    <a href="includes/forgot.php">Forgot Password</a>
+                                </div>
+        
+                                 <div class="form-group">
+                                    <button class="btn btn-success" name="user_login" type="submit">Login</button>
+                                </div>   
+                            </form>
+        
+                            <!-- /.input-group -->
                         </div>
+                        <?php
+                        }
 
-                        <div class="form-group">
-                    		<label for="user_password">Password</label>
-                            <input type="Password" class="form-control" name="user_password">
-                        </div>
-
-                         <div class="form-group">
-                    		<button class="btn btn-success" name="user_login" type="submit">Login</button>
-                        </div>   
-                    </form>
-
-                    <!-- /.input-group -->
-                </div>
+                    ?>
+           
 
 
 

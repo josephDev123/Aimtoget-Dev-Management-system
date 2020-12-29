@@ -6,7 +6,10 @@
 //    header('Location: ../admin');
 // }
 
-if(isAdmin($_SESSION['username']));
+// if(isAdmin($_SESSION['username'])); correct
+if(!isAdmin($_SESSION['username'])){
+   header('Location: ../admin');
+}
 ?>
 
 

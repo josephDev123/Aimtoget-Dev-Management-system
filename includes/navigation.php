@@ -70,6 +70,9 @@
                        }
                        ?>
 
+                            <li >
+                                <a href="newLogin.php">Login</a>
+                            </li>
 
                             <li class='<?php echo $registration_class ?>'>
                                 <a href="registration.php">Registration</a>
@@ -78,6 +81,10 @@
                             
                             <li class='<?php echo $contact_class ?>'>
                                 <a href="contact.php">Contact.php</a>
+                            </li>
+
+                            <li >
+                                <a href="admin">admin</a>
                             </li>
 
                             <?php 
