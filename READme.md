@@ -10,7 +10,7 @@ Link will be available very soon
   - Content(Post) creation
   - Upload of file to content(File upload)
   - Registration, forgot password and login functionality
-  - Fully functional admin 
+  - Fully functional admin or backend 
   - Comment added to the post
   - Like and dislike content functionality
   - 
@@ -25,8 +25,6 @@ PHP
 ## Author
 ```
 Uzuegbu, Joseph
-
 Linkedin: https://www.linkedin.com/in/joseph-uzuegbu/
-
 Twiiter: https://twitter.com/JosephUzuegbu
 ```
