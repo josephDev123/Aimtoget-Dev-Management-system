@@ -1,5 +1,5 @@
-#Aimtoget Dev PHP intern test
-
+#Content Management System with PHP
+```
 Management system that entails:
   - Content(Post) creation
   - Upload of file to content(File upload)
@@ -8,6 +8,6 @@ Management system that entails:
   - Comment added to the post
   - Files list 
   - etc
-
+```
 
 Programming Language used: PHP
