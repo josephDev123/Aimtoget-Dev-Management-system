@@ -27,6 +27,5 @@ PHP
 Uzuegbu, Joseph
 
 [Linkedin](https://www.linkedin.com/in/joseph-uzuegbu/)
-
 [Twitter](https://twitter.com/JosephUzuegbu)
 
