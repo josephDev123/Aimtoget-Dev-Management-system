@@ -4,17 +4,28 @@
 
 Link will be available very soon
 
-## Management system that entails:
+## Content Management system that entails:
 ```
   - Content(Post) creation
   - Upload of file to content(File upload)
-  - Registration and login
+  - Registration, forgot password and login functionality
   - Fully functional admin 
   - Comment added to the post
-  - Files list 
-  - etc
+  - Like and dislike content functionality
+  - 
 ```
-
+```
 ## Programming Language used: 
 
 PHP
+```
+
+```
+## Author
+
+Uzuegbu, Joseph
+
+Linkedin: https://www.linkedin.com/in/joseph-uzuegbu/
+
+Twiiter: https://twitter.com/JosephUzuegbu
+```
