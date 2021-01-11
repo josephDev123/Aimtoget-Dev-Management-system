@@ -1,11 +1,12 @@
-#Content Management System with PHP
+# Content Management System with PHP
 
-##Link:
+## Link:
+
 Link will be available very soon
 
 
 ```
-##Management system that entails:
+## Management system that entails:
   - Content(Post) creation
   - Upload of file to content(File upload)
   - Registration and login
@@ -15,4 +16,6 @@ Link will be available very soon
   - etc
 ```
 
-Programming Language used: PHP
+##Programming Language used: 
+
+PHP
