@@ -25,6 +25,8 @@ PHP
 ## Author
 
 Uzuegbu, Joseph
+
 [Linkedin](https://www.linkedin.com/in/joseph-uzuegbu/)
-[Twiiter](https://twitter.com/JosephUzuegbu)
+
+[Twitter](https://twitter.com/JosephUzuegbu)
 
