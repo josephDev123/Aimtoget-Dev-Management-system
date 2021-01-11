@@ -1,8 +1,9 @@
 # Content Management System with PHP
 
 ## Link:
-
+```
 Link will be available very soon
+```
 
 ## Content Management system that entails:
 ```
@@ -14,15 +15,15 @@ Link will be available very soon
   - Like and dislike content functionality
   - 
 ```
-```
-## Programming Language used: 
 
+## Programming Language used: 
+```
 PHP
 ```
 
-```
-## Author
 
+## Author
+```
 Uzuegbu, Joseph
 
 Linkedin: https://www.linkedin.com/in/joseph-uzuegbu/
