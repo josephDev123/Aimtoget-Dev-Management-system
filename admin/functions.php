@@ -115,6 +115,19 @@ if ($num_of_rows > 0) {
 }
 
 
+function isEmail($email){
+    global $conn;
+    $sql ="SELECT users_email FROM users_table WHERE users_email = ? ";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_bind_result($stmt, $email);
+    mysqli_stmt_fetch($stmt);
+    if(mysqli_stmt_execute($stmt)){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 
 

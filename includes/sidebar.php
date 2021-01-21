@@ -43,7 +43,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <a href="includes/forgot.php">Forgot Password</a>
+                                    <a href="forgot.php?forget=<?php echo rand() ?>">Forgot Password</a>
                                 </div>
         
                                  <div class="form-group">
