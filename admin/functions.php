@@ -89,7 +89,8 @@ if ($num_of_rows > 0) {
 		$db_users_firstname = $row['users_firstname'];
 		$db_users_lastname = $row['users_lastname'];
 		$db_users_role     = $row['users_role'];
-		echo $db_users_password;
+        $db_users_id     = $row['users_id'];
+		// echo $db_users_password;
 	if ($username == $db_users_username && $password == $db_users_password) {
 		// if ($user_username == $db_users_username && password_verify($user_password, $db_users_password)) {
 
@@ -98,7 +99,7 @@ if ($num_of_rows > 0) {
 			$_SESSION['users_firstname'] = $db_users_firstname;
 			$_SESSION['users_lastname'] = $db_users_lastname;
 			$_SESSION['users_role'] = $db_users_role;
-			
+			$_SESSION['users_id'] = $db_users_id;
             // header('Location: ../admin');
             return true;
 	
@@ -130,5 +131,23 @@ function isEmail($email){
 }
 
 
+function userId($user_id){
+    global $conn;
+    $sql = mysqli_query($conn, "SELECT users_id FROM likes WHERE users_id = '{$user_id}'");
+    $row = mysqli_fetch_array($sql);
+    // if(isset($row['users_id'])){
+    //     return true;
+    // }else{
+    //     return false;
+    // }
+}
+
+
+function numOfLike($postId){
+    global $conn;
+    $sql = mysqli_query($conn, "SELECT * FROM likes WHERE post_id = '{$postId}'");
+    $row = mysqli_num_rows($sql);
+    return $row;
+}
 
 ?>

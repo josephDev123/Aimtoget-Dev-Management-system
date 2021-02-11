@@ -38,7 +38,7 @@
             
         // }
         }else{
-            $password = password_hash($password, PASSWORD_DEFAULT);
+            // $password = password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO users_table(users_username, users_email, users_password)VALUES('$username', '$email', '$password')";
             $confirm_on_db2 = mysqli_query($conn, $sql);
 

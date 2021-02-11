@@ -6,7 +6,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-        </footer>
+ </footer>
 
     </div>
     <!-- /.container -->
@@ -16,6 +16,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+  
 
 </body>
 

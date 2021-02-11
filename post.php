@@ -1,15 +1,88 @@
 
-
 <?php session_start(); ?>
 
     <!-- header -->
 
 <?php include 'includes/header.php'; ?>
-
-
     <!-- Navigation -->
 
 <?php include 'includes/Navigation.php'; ?>
+
+<?php include 'admin\functions.php'; ?>
+
+
+
+  <!-- likes  session -->
+    <?php
+  
+    if(isset($_POST['liked'])){
+        //number of post for specify post
+         $postId = $_GET['post_id'];
+            $sql = mysqli_query($conn, "SELECT likes FROM post_table WHERE post_id = '{$postId}'");
+            $row = mysqli_fetch_assoc($sql);
+            $numPost = $row['likes'];
+            $numPost++;
+
+    //username of the person that post it
+            $sql = mysqli_query($conn, "SELECT post_users FROM post_table WHERE post_id = '{$postId}'");
+            $row = mysqli_fetch_assoc($sql);
+            $postUser = $row['post_users'];
+        
+//select user_id from users's table
+            $sql = mysqli_query($conn, "SELECT users_id FROM users_table WHERE users_username = '{$postUser}'");
+            $row = mysqli_fetch_assoc($sql);
+            $UserId = $row['users_id'];
+           
+
+
+
+            //updated the post likes
+          
+                $like = $_POST['liked'];
+                $post_id = $_POST['post_id'];
+                 $sql = mysqli_query($conn, "UPDATE post_table SET likes = '{$numPost}' WHERE post_id = '{$post_id}' ");
+
+                //insert into like table
+                $sql = mysqli_query($conn, "INSERT INTO likes(post_id, users_id)VALUE('{$post_id}', '{$UserId}')");
+                   
+        }
+
+
+
+
+        // unlike session
+        if(isset($_POST['unliked'])){
+                //number of post for specify post
+                $post_id = $_POST['post_id'];
+                $sql = mysqli_query($conn, "SELECT likes FROM post_table WHERE post_id = '{$postId}'");
+                $row = mysqli_fetch_assoc($sql);
+                $numPost = $row['likes'];
+                $numPost--;
+
+                //username of the person that post it
+                $sql = mysqli_query($conn, "SELECT post_users FROM post_table WHERE post_id = '{$postId}'");
+                $row = mysqli_fetch_assoc($sql);
+                $postUser = $row['post_users'];
+
+                //select user_id from users's table
+                $sql = mysqli_query($conn, "SELECT users_id FROM users_table WHERE users_username = '{$postUser}'");
+                $row = mysqli_fetch_assoc($sql);
+                $UserId = $row['users_id'];
+
+
+
+            $like = $_POST['liked'];
+            $post_id = $_POST['post_id'];
+             $sql = mysqli_query($conn, "UPDATE post_table SET likes = '{$numPost}' WHERE post_id = '{$post_id}' ");
+
+            //delete from like table
+            $sql = mysqli_query($conn, "DELETE FROM likes WHERE post_id = '{$post_id}'");
+               
+    }
+    ?>
+
+
+
 
 
 
@@ -21,10 +94,11 @@
             <!-- Blog Entries Column -->
             <div class="col-md-8">
 
-                <h1 class="page-header">
+                <!-- <h1 class="page-header">
                     Page Heading
-                    <small>Secondary Text</small>
-                </h1>
+                    <small>Secondary Text </small>
+                
+                </h1> -->
 
                 <!-- First Blog Post -->
                 <?php
@@ -63,8 +137,50 @@
                 <img class="img-responsive" src="images/<?php echo $post_image ?>" alt="cms project image">
                 <hr>
                 <p><?php echo $post_content ?></p>
+           
+
+            <!-- likes section -->
+           <?php
+
+            if(isset($_SESSION['username'])){
+            ?>  
+                <div class="row">
+              <?php  
+            if(!userId($_SESSION['users_id'])){
+                    ?>
+                    <p class="pull-right"><a class="like" href="">Like</a></p>
+                    <?php
+                }else{
+                    ?>
+                    <p class="pull-right"><a class="unlike" href="">Unlike</a></p>
+                    <?php
+                }
+                        ?>
+                    </div>
                 
 
+                    <!-- number of likes section -->
+                    <div class="row">
+                        <p class="pull-right">Like: <?php echo numOfLike($post_id); ?></p>
+                    </div>
+
+                    <div class="row">
+                        <p class="pull-right">Views: <?php echo $post_views; ?></p>
+                    </div>
+                    
+                   
+                <?php
+              
+            }else{
+                
+                    echo '<div class="row">
+                    <hr>
+                    <p class="pull-right"><a class="alert alert-danger" href="newLogin.php">login to see Like, unlike and likewise number of views for the post</a></p>
+                    </div>';
+            }
+              ?> 
+                
+               
                 <hr>
 
 
@@ -80,16 +196,15 @@ $update_post_view_on_db= mysqli_query($conn, $sql);
 
                 ?>
 
-
                 <!-- Pager -->
-                <ul class="pager">
+                <!-- <ul class="pager">
                     <li class="previous">
                         <a href="#">&larr; Older</a>
                     </li>
                     <li class="next">
                         <a href="#">Newer &rarr;</a>
                     </li>
-                </ul>
+                </ul> -->
 
             </div>
 
@@ -100,8 +215,9 @@ $update_post_view_on_db= mysqli_query($conn, $sql);
 
 
         </div>
+        
         <!-- /.row -->
-
+        
 
                 <!-- Blog Comments -->
                 <?php
@@ -150,6 +266,16 @@ $update_post_view_on_db= mysqli_query($conn, $sql);
 
                         <button type="submit" class="btn btn-primary" name="comment_submit">Submit</button>
                     </form>
+<hr>
+                    <?php
+                    if(!$_SESSION['username']){
+                        ?>
+                        <div class="row">
+                            <p> <a class="alert alert-danger" href="newLogin.php">To see the comment, login and approve it in the Admin</a></p>
+                        </div>;
+                    <?php
+                    }
+                    ?>
                 </div>
 
                 <hr>
@@ -190,7 +316,49 @@ $update_post_view_on_db= mysqli_query($conn, $sql);
 
                 ?>
 
-     
-
+</div>
+                
         <!-- Footer -->
       <?php include 'includes/footer.php'; ?>
+
+      <script>
+    $(document).ready(function(){
+        $('.like').click(function(){
+            const post_id = <?php echo $post_id; ?>;
+            // const user_id = 14;
+
+            $.ajax({
+                url: 'post.php?post_id=<?php echo  $post_id; ?>',
+                type: 'post',
+                data: {
+                    'liked': 1,
+                    // 'user_id': user_id,
+                    'post_id': post_id
+                }
+            })
+
+        })
+
+
+        $('.unlike').click(function(){
+            const post_id = <?php echo $post_id; ?>;
+            // const user_id = 14;
+
+            $.ajax({
+                url: 'post.php?post_id=<?php echo  $post_id; ?>',
+                type: 'post',
+                data: {
+                    'unliked': 1,
+                    'post_id': post_id
+                }
+            })
+
+        })
+
+
+
+    })
+    
+    
+    
+    </script>
